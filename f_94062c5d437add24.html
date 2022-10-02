@@ -1,0 +1,374 @@
+
+ <div class="page-1">
+            <div class="hz_bulding-single">
+                <?php /*
+                <div class="header">
+                    <div class="logo"><img src="/wp-content/themes/tomasnet/images/logo_herzen-agency.png" alt="banner-kk"></div>
+                    <h2 class="logotitle">Современный подход<br> к коммерческой недвижимости</h2>
+                    <div class="block-contact"><p><span>+7 (495) 99-55-871</span></p><p class="font400 grey">Пн-Пт 09:00 - 20:00, Сб - Вс 10:00 - 17:00</p></div>
+                </div>
+                */ ?>
+                <table class="header">
+                    <tr>
+                        <td class="logo"><img
+                                    src="<?php bloginfo('template_url'); ?>/images/Logo_herzen_agency.png"
+                                    alt="banner-kk"></td>
+                        <td class="logotitleblock"><h2 class="logotitle">Современный подход<br> к коммерческой
+                                недвижимости</h2></td>
+                        <td class="block-contact">
+                            <table>
+                                <tr>
+                                    <td class="phoneb">+7 (495) 99-55-871</td>
+                                </tr>
+                                <tr>
+                                    <td class="minidays font400 grey">Пн-Пт 09:00-20:00, Сб-Вс 10:00-17:00</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <div class="clear"></div>
+
+                <table class="headline font500 topbghead" style="margin-bottom:0; font-size: 20px; height: 44px;">
+                    <tr style="valign:bottom">
+                        <td class="textar"
+                            style="padding-left:10px;height: 40px;"><?php if ($hz_price_build != 0) { ?> Аренда <?php } else { ?> Продажа <?php } ?>
+                            помещения<?php if ($hz_purpose_build == "Торговое") { ?> в <?php echo $hz_name_territory;
+                            } else { ?> - <?php echo $hz_purpose_build;
+                            } ?></td>
+                        <td class="ident">ID: <?php echo $building_id; ?></td>
+                    </tr>
+                </table>
+                <div class="left-block-40">
+                    <div class="gallery">
+                        <?php
+                        if (!empty($Address)) get_map_from_adress_sec($building_id, $Address);
+
+                        echo '<div class="clearimg">&nbsp;</div>';
+
+                        ?>
+                        <!--  <?php the_post_thumbnail('galery-main'); ?> -->
+
+                        <?php
+                        $count_image = 3;
+
+                        if ($dopinfo_length_words > 20) {
+                            $count_image = 6;
+                        }
+                        if ($info_length_p != 0) {
+                            if ($info_length_br > 15 && $info_length_p >= 8 && $info_length_p < 10) {
+                                $count_image = 6;
+                            }
+                        }
+
+
+                        if ($images) {
+                            $i = 0;
+                            foreach( $images as $image ) {
+
+                               if ($i == $count_image){	break;} //выподит определенное количество фото в презентацию							   
+
+                                ?>
+                                <img style="width: 100%; height: auto;" src="<?php echo esc_url($image['sizes']['galery-main']); ?>"
+                                     alt=""/>
+                                <div class="clearimg">&nbsp;</div>
+                                <?php
+
+
+                                $i++;
+
+
+                            }
+                        }
+                        ?>
+                    </div>
+
+                    <!--       <div class="agent">
+                        <div class="photo"><img src="/wp-content/themes/tomasnet/images/manager.png"></div>
+                        <div class="text">
+                            <p class="name">Неизвестный Николай</p>
+                            <p class="phone">+7 (909) 686-71-31</p>
+                            <p class="mail grey">neizvestniy.n@herzen.biz</p>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="dop_text">Скидки и индивидуальные улучшения - обсуждаются!</div>
+                    </div> -->
+                </div>
+                <?php
+				
+                $min_sq = get_field('hz_building_area_min');
+                $max_sq = get_field('hz_building_area_max');
+                $diff_sq = $max_sq - $min_sq;
+                ?>
+
+
+                <div class="right-block">
+                    <table class="pricensq">
+
+                        <tr>
+                            <?php if ($diff_sq == 0 || $diff_sq == 1) {
+                                ?>
+                                <td class="square">S: <?php echo number_format($max_sq, 0, '.', ' '); ?> м²</td>
+                                <?php
+                            } else {
+                                ?>
+                                <td class="square">
+                                    от <?php echo number_format(get_field('hz_building_area_min'), 0, '.', ' '); ?> м²
+                                    до <?php echo number_format(get_field('hz_building_area_max'), 0, '.', ' '); ?> м²
+                                </td>
+                            <?php }
+                            ?>
+                            <?php if ($hz_price_build != 0){ ?>
+                            <td class="price"><?php echo number_format($hz_building_price, 0, '.', ' '); ?>руб/м²/год
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="pricem grey"><?php echo number_format($hz_building_price / 12, 0, '.', ' '); ?>
+                                руб/м²/месяц
+                            </td>
+                        </tr>
+                        <?php } else { ?>
+                            <td class="price"><?php echo number_format($hz_building_price_sell, 0, '.', ' '); ?>руб.
+                            </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                    <div class="locationplus">
+
+
+                        <?php if (isset($hz_building_min_walk_subway) && $hz_building_min_walk_subway != '') {
+                            $min_walk_subway = '(<span class="grey">' . $hz_building_min_walk_subway . ' мин. пешком</span>)';
+                        }
+                        if (isset($hz_purpose_build) && $hz_purpose_build == "Торговое") {
+                            if (isset($Address) && $Address != '' && $Address != ', ') {
+                               ?> <div class="address"><img class="svg-icon-medium" src="<?php bloginfo('template_url'); ?>/images/ic_location.png">" <?php echo $Address; ?></div>
+                            <?}
+                        }
+                        if (isset($hz_roads) && $hz_roads != '') {
+                            ?><div class="mkad"><img class="svg-icon-medium" src="<?php bloginfo('template_url'); ?>/images/ic_roadway.png"><?php echo $hz_roads;?> шоссе</div>
+                        <?}
+                        if (isset($hz_building_distance) && $hz_building_distance != '' && $hz_building_in_moscow != 1) {
+                            ?><div class="mkad"><img class="svg-icon-medium" src="<?php bloginfo('template_url'); ?>/images/ic_mkad.png"><?php echo $hz_building_distance;?> км от МКАД</div>
+                        <?}
+                        if (isset($hz_okrug) && $hz_okrug != '') {
+                            ?><div class="okrug"><img class="svg-icon-medium" src="<?php bloginfo('template_url'); ?>/images/ic_okrug.png"><?php echo $hz_okrug;?></div>
+                        <?}
+                        if (isset($hz_building_subway_terms) && $hz_building_subway != '') {
+                            ?><div class="metro"><img class="svg-icon-medium" src="<?php bloginfo('template_url'); ?>/images/ic_metro-1_rd.png"><?php echo $hz_building_subway .' ' . $min_walk_subway;?></div>
+                        <?} 
+                    ?></div>
+                    <?php
+                    switch ($hz_purpose_build) {
+                        case 'Склад':
+                            $block3text = 'Большая территория';
+                            $block4text = 'Объект газифицирован';
+                            break;
+                        case 'Торговое':
+                            $block3text = 'Развитая инфраструктура';
+                            $block4text = 'Большой трафик людей';
+                            break;
+                        case 'Офис':
+                            $block3text = 'Развитая инфраструктура';
+                            $block4text = 'Удобное расположение';
+                            break;
+                        default:
+                            $block3text = 'Развитая инфраструктура';
+                            $block4text = 'Удобное расположение';
+                            break;
+                    }
+					
+                    ?>
+                    <table class="buttons">
+                        <tr>
+                            <td class="show">Объект готов к показу</td>
+                            <td class="start">Объект готов к въезду</td>
+                            <td class="dontshow"></td>
+                        </tr>
+                        <!--<tr><td class="infra"><p><?php echo $block3text; ?></p></td><td class="rasp"><p><?php echo $block4text; ?></p></td><td class="dontshow"></td></tr> !-->
+                    </table>
+                    <div class="clearimg"></div>
+                    <div>
+                        <div class="headline font400">
+                            <img src="<?php bloginfo('template_url'); ?>/images/ic_plan.png"
+                                 class="svg-icon"> Общая характеристика объекта:
+                        </div>
+                        <div class="box-info-table"> <?php echo $all_building_info_not_table; ?></div>
+                    </div>
+                    <div class="clearimg"></div>
+                    <?php if ($dop_info != false) { ?>
+                        <div>
+                            <div class="headline font400">
+                                <img src="<?php bloginfo('template_url'); ?>/images/ic_dopinfo.png"
+                                     class="svg-icon"> Дополнительная информация:
+                            </div>
+                            <div class="box-info-table"> <?php echo $dop_info ?></div>
+                        </div>
+                    <?php } ?>
+                    <div class="clearimg"></div>
+                    <?php if ($dop_square_info['text'] != false) { ?>
+                        <div>
+                            <div class="headline font400">
+                                <img src="<?php bloginfo('template_url'); ?>/images/ic_zaezd_white.png"
+                                     class="svg-icon"> Варианты деления площади:
+                            </div>
+                            <div class="box-info-table">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead style="border-bottom: 2px solid #B9B9B9;">
+                                    <tr>
+                                        <td style="width: 20%; text-align: left;">#</td>
+                                        <td style="width: 50%">Площадь (м2):</td>
+                                        <td style="width: 30%">Цена (руб/м2/год):</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php echo $dop_square_info['text']; ?>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    <?php } ?>
+
+                    <div class="clear"></div>
+                    <?php
+                    
+					$count_num = 3;
+                    /*       if ($dopinfo_length_words > 60) {
+           $count_num = 0;
+		}elseif ($dopinfo_length_words > 40 && $dopinfo_length_words <= 60 ){
+             $count_num = 1;
+		}elseif ($dopinfo_length_words >= 20 && $dopinfo_length_words <= 40 ){
+             $count_num = 2;
+		}elseif ($dopinfo_length_words > 20) {
+             $count_num = 3;
+        }else{
+            $count_num = 3;
+		}
+		if ($info_length_p !=0){
+		if ($info_length_br > 15 && $info_length_p >=8 && $info_length_p <10){
+			 $count_num = 1;
+		}elseif($info_length_br > 15 && $info_length_p >=10 ){
+			 $count_num = 0;
+			}
+		}	 */
+
+                    if ($dop_square_info['found_count'] >= 5 && $dopinfo_length_words < 20) {
+                        $count_num = 0;
+                    }
+
+                    if ($count_num != 0) {
+                        //if($dop_square_info = false){
+
+
+                        $hz_rel_object_building = get_post_meta($post->ID, 'hz_rel_object_building', true);
+
+
+                        $args = array(
+                            'posts_per_page' => -1,
+                            'post_type' => 'hz_building',
+                            'post_status' => 'publish',
+                            'orderby' => 'rand',
+                            'post__not_in' => array($post->ID),
+                            'meta_query' => array(
+                                array(
+                                    'key' => 'hz_rel_object_building',
+                                    'value' => $hz_rel_object_building,
+                                    'type' => 'NUMERIC',
+                                    'compare' => '=='
+                                ),
+                                array(
+                                    'key' => 'hz_building_relevance',
+                                    'value' => 'Да',
+                                    'type' => 'CHAR',
+                                    'compare' => '='
+                                )
+                            )
+                        );
+
+                        $query = new WP_Query($args);
+                        if ($query->have_posts()) { ?>
+
+                            <div class="other_ids">
+                            </br>
+                            <div class="title">Другие помещения на территории:</div>
+                            <table class="others_list">
+
+                            <?php
+                            $it = 0;
+                            while ($query->have_posts() && $it < $count_num): $query->the_post();
+                                $it++; ?>
+                                <?php
+                                $min_sq = get_field('hz_building_area_min');
+                                $max_sq = get_field('hz_building_area_max');
+                                $diff_sq = $max_sq - $min_sq;
+                                $hz_heat_build = get_field('hz_building_heated');
+                                switch ($hz_heat_build) {
+                                    case 'Отапливаемый  (теплый)':
+                                        $hz_heat_build_accord = 'Отапливаемый';
+                                        break;
+                                    case 'Неотапливаемый (холодный)':
+                                        $hz_heat_build_accord = 'Неотапливаемый';
+                                        break;
+                                    default:
+                                        $hz_heat_build_accord = $hz_heat_build;
+                                        break;
+                                }
+                                $hz_price_build = get_field('hz_building_price');
+                                $FloorsCount = get_field('hz_building_level_all', $post->id);
+                                $hz_building_crane_level = get_field('hz_building_crane_level', $post->id);
+								
+                                ?>
+
+
+                                <tr class="one_id">
+                                    <td class="idn">ID: <?php echo get_field('hz_building_id'); ?></td>
+                                    <td class="typenet">
+                                        <p class="type"><?php echo hz_get_the_term_names($post->ID, 'hz_purpose_build'); ?> </p>
+                                        <p class="etaz grey">Этаж <?php echo $hz_building_crane_level; ?>
+                                            из <?php echo $FloorsCount; ?></p>
+                                    </td>
+                                    <td class="sqmnot">
+                                        <?php if ($diff_sq == 0 || $diff_sq == 1) {
+                                            ?>
+                                            <p class="squarm"><?php echo number_format($max_sq, 0, '.', ' '); ?> м²</p>
+                                        <?php } elseif ($min_sq >= 10000) { ?>
+                                            <p class="squarm">
+                                                от <?php echo number_format(get_field('hz_building_area_min'), 0, '.', ' '); ?>
+                                                до <?php echo number_format(get_field('hz_building_area_max'), 0, '.', ' '); ?>
+                                                м²</p>
+                                        <?php } else { ?>
+                                            <p class="squarm">
+                                                от <?php echo number_format(get_field('hz_building_area_min'), 0, '.', ' '); ?>
+                                                м²
+                                                до <?php echo number_format(get_field('hz_building_area_max'), 0, '.', ' '); ?>
+                                                м²</p>
+                                        <?php } ?>
+                                        <p class="otapl grey"><?php echo $hz_heat_build_accord; ?></p>
+                                    </td>
+                                    <?php if ($hz_price_build != 0) { ?>
+                                        <td class="price"><?php echo number_format(get_field('hz_building_price'), 0, '.', ' '); ?>
+                                            руб/м²/год
+                                        </td>
+                                    <?php } else { ?>
+                                        <td class="price">Продажа!</td>
+                                    <?php } ?>
+                                </tr>
+                            <?php endwhile; ?>
+                        <?php }
+                        wp_reset_postdata(); ?>
+
+                        </table>
+                        </div>
+
+
+                    <?php } ?>
+                </div>
+                <div class="clearnull">&nbsp;</div>
+
+            </div>
+
+        </div>

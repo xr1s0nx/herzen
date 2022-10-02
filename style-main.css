@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap&subset=cyrillic');
+@media print{
+@page {
+
+		size: landscape;
+		margin-top: 0.54cm;
+		margin-bottom: 0.54cm;
+		margin-left: 0;
+		margin-right: 0;
+
+	}
+}
+* {
+    margin: 0;
+    padding:0;
+}
+
+body {
+    z-index: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #4e4b4b;
+    padding: 0;
+    line-height: 19px;
+    font-family: 'Oswald', sans-serif;
+}
+table, th, td {border: none;}
+.clear{clear: both;}
+.clearimg{
+	clear: both;
+	line-height: 13px}
+.clearnull{
+	clear: both;
+	line-height: 1px}
+h1{text-align: center;margin: 0 auto;}
+
+.logotitle{text-align: left;
+    color: #1d7225;
+    font-weight: 500;
+    float: left;
+    text-transform: uppercase;
+    font-size: 16px;
+margin-top: 30px;
+margin-left: 30px;
+}
+
+.logotitleblock{
+	text-align: left;
+	}
+
+.headline{
+    background: #969495;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 12px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Oswald', sans-serif;
+    margin: 10px 0 10px 0;
+}
+.headline__text{float:left;}
+.topbghead{background-image: url('/wp-content/themes/tomasnet/images/id-bg-shape.png');background-position: right;background-repeat: no-repeat;background-size: contain;width: 100%;}
+.headline .ident{float: right;}
+.headline .textar{float:left;text-align: left;}
+
+.font200{font-weight: 200;}
+.font300{font-weight: 300;}
+.font400{font-weight: 400;}
+.font500{font-weight: 500;}
+.grey{color: #969595;}
+.text-center{text-align: center;}
+.font-small{font-size: 10px;}
+
+.hz_bulding-single .header {
+    width: 100%;
+	height: 75px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.hz_bulding-single .header .logo {text-align: left;
+    /*float: left;*/
+	width: 95px;
+	/*display: block;text-align: center;*/}
+.hz_bulding-single .header .logo img{height: 90px;}
+.hz_bulding-single .header .block-contact {
+float: right;
+text-align: right;
+margin-top: 15px;
+}
+
+.hz_bulding-single .header .block-contact .phoneb{font-size:22px;line-height: 24px;font-weight: bold;text-align: right;}
+.hz_bulding-single .header .block-contact .minidays{
+    font-size: 10px;
+    line-height: 12px;
+    margin: 6px 0;
+    text-align: right;}
+
+.hz_bulding-single .left-block-40 {
+    float: left;
+    width: 40%;
+    margin: 15px 25px 0px 0px;
+    overflow: hidden;
+}
+
+.hz_bulding-single .right-block{
+    margin: 15px 0 0px 0px;
+    float: right;
+    width: 56%;
+}
+
+.svg-icon{height:20px;}
+.svg-icon-medium{width: 20px;padding-right: 10px;}
+.svg-icon-mini{height:15px;margin: 5px 0px;}
+
+.hz_bulding-single .gallery  img {
+    width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 0;
+}
+.box-info-table .headv{font-weight: bold;}
+.param-value{font-weight: 300;}
+
+.pricensq{overflow: hidden;width: 100%;}
+.pricensq .square{ color: #1d7124;font-size: 20px;line-height: 22px;font-weight: 500;text-align: left;letter-spacing: 0px;}
+.pricensq .price{ color: #505a97;font-size: 20px;line-height: 22px;font-weight: 500;text-align: right;letter-spacing: 0px;}
+.pricensq .pricem{font-size: 16px;text-align: right;}
+
+.locationplus{font-size: 16px;line-height: 24px;font-weight: 300;}
+
+.buttons{width: 60%;margin: 5px 0;overflow: hidden;font-size: 14px;}
+.buttons td{background: #efefef;border-radius: 5px;padding: 3px 5px 3px 25px;margin: 0 4px;border-top: 5px solid #fff;
+    background-repeat: no-repeat;background-position: 3% 55%;background-size: 18px;text-align: left;border-right: 3px solid #fff;
+border-left: 3px solid #fff;}
+.buttons td,.buttons tr,.buttons,.buttons tbody{height:30px;overflow: hidden;font-size: 14px;line-height: 14px;vertical-align: middle;}
+
+
+
+.buttons td.show{background-image: url('/wp-content/themes/tomasnet/images/ic_pokaz.png');}
+.buttons td.start{background-image: url('/wp-content/themes/tomasnet/images/ic_zaezd.png');}
+.buttons td.infra{background-image: url('/wp-content/themes/tomasnet/images/ic_star.png');}
+.buttons td.rasp{background-image: url('/wp-content/themes/tomasnet/images/ic_star.png');}
+.buttons td.dontshow{display: none;background: #fff;width:0px;}
+
+
+
+.other_ids{margin:12px 0 10px 0;}
+.others_list{margin:10px 0;}
+.other_ids .title{font-size: 22px!important;}
+.other_ids .one_id{margin: 10px 0;overflow: hidden;border-top: 5px solid #fff;}
+
+.other_ids .one_id td{line-height: 14px;font-size: 14px;}
+
+.other_ids .one_id > div{float:left;margin: 0 40px;}
+
+.other_ids .one_id .idn{background-image: url('/wp-content/themes/tomasnet/images/id-bg-shape_min.png');
+width: 93px;
+height: 40px;
+box-sizing: border-box;
+color: #fff;
+text-align: left;
+font-size: 16px;
+line-height: 38px;
+padding: 0 15 10 15px;
+font-weight: 500;
+background-repeat: no-repeat;
+}
+
+.typenet, .sqmnot
+{padding: 0 5px 5px 5px;}
+
+.type, .squarm {padding-bottom: 3px;}
+
+.other_ids .one_id .price{color: #505a97;}
+.squarm{color: #1d7325;}
+
+
+
+.agent .photo{width:20%; float: left;}
+.agent .text{float: right;text-align: left;width: 60%;padding: 0 20px;}
+.agent .text p{padding: 4px 0;font-size: 18px;margin: 0;}
+.agent .text p.phone{color: #1d7124;font-weight: 500;}
+.agent{background-color: #e4e4e4;border-radius: 5px;overflow: hidden;}
+.agent .dop_text{background-color: #1d7124;color:#fff;text-align: center;padding: 5px;font-size: 18px;}
+
+#map {width: 100%;height: 300px;margin: 0;padding: 0;}
+
+p:empty {
+   display: none;
+}
+p{margin:0;}
+
+.gallery{text-align: center;}
+.gallery img{margin:5px 0 !important}
+
+div#content {
+    width: 960px;
+    margin: 0 auto 0 auto;
+}
+
+img {
+    margin: 0;
+}
+
+.page-1, .page-2, .page-3{
+    position: relative;
+    width: 100%;
+    overflow:hidden;
+}

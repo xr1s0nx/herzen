@@ -1,0 +1,14 @@
+div#content {
+    width: 960px;
+    margin: 0 auto 0 auto;
+}
+
+img {
+	margin: 0;
+}
+
+.page-1, .page-2, .page-3{
+	position: relative;
+	width: 100%;
+	overflow:hidden;
+}
